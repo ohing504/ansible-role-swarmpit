@@ -1,2 +1,4 @@
 ---
-# defaults file for ansible-role-swarmpit
+swarmpit_repo: "https://github.com/swarmpit/swarmpit"
+swarmpit_branch: "master"
+swarmpit_workspace: "{{ ansible_env.HOME }}/swarmpit"

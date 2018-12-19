@@ -1,2 +1,9 @@
 ---
-# tasks file for ansible-role-swarmpit
+- name: Cloning swarmpit repository
+  git:
+    repo: "{{ swarmpit_repo }}"
+    dest: "{{ swarmpit_workspace }}"
+    version: "{{ swarmpit_branch }}"
+
+- name: Deploy swarmpit
+  command: "docker stack deploy -c {{ swarmpit_workspace }}/docker-compose.yml swarmpit"
