@@ -1,0 +1,9 @@
+---
+- name: Prepare
+  hosts: all
+  gather_facts: false
+  tasks:
+    - name: Install git package
+      package:
+        name: git
+        state: present
