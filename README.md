@@ -1,11 +1,13 @@
 # Ansible Role: Swarmpit
 
+[![Build Status](https://travis-ci.org/ohing504/ansible-role-swarmpit.svg?branch=master)](https://travis-ci.org/ohing504/ansible-role-swarmpit)
+
 An Ansible Role the deploy [Swarmpit](https://swarmpit.io/) docker stack on Linux.
 
 ## Requirements
 
+* Target has `git` and `docker` running in swarm mode.
 * Swarmpit supporting Docker 1.13 and newer.
-* Docker Swarm Manager (this role deploy swarmpit as docker stack)
 
 ## Role Variables
 
