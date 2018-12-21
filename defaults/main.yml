@@ -1,4 +1,6 @@
 ---
+swarmpit_update_stack: false
+swarmpit_stack_name: "swarmpit"
 swarmpit_repo: "https://github.com/swarmpit/swarmpit"
 swarmpit_branch: "master"
 swarmpit_workspace: "{{ ansible_env.HOME }}/swarmpit"

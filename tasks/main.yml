@@ -5,5 +5,35 @@
     dest: "{{ swarmpit_workspace }}"
     version: "{{ swarmpit_branch }}"
 
+- name: Check if "Docker" is installed
+  shell: "which docker"
+  register: is_docker_exist
+  changed_when: false
+  ignore_errors: true
+  tags:
+    - skip_ansible_lint
+
+- name: Check if "Swarm Mode" is enabled
+  shell: docker info
+  register: docker_info
+  changed_when: false
+  ignore_errors: true
+  tags:
+    - skip_ansible_lint
+
+- name: Get docker stack list
+  command: docker stack ls --orchestrator swarm --format {% raw %}'{{.Name}}'{% endraw %}
+  register: stacks
+  changed_when: false
+  when: >-
+    is_docker_exist.rc == 0
+    and docker_info.stdout.find('Swarm: active') != -1
+
 - name: Deploy swarmpit
-  command: "docker stack deploy -c {{ swarmpit_workspace }}/docker-compose.yml swarmpit"
+  command: docker stack deploy -c {{ swarmpit_workspace }}/docker-compose.yml {{ swarmpit_stack_name }}
+  register: deploy_result
+  changed_when: not swarmpit_update_stack
+  when: >-
+    is_docker_exist.rc == 0
+    and docker_info.stdout.find('Swarm: active') != -1
+    and (swarmpit_stack_name not in stacks.stdout_lines or swarmpit_update_stack)

@@ -1,10 +1,11 @@
 # Ansible Role: Swarmpit
 
-An Ansible Role the installs [Swarmpit](https://swarmpit.io/) on Linux.
+An Ansible Role the deploy [Swarmpit](https://swarmpit.io/) docker stack on Linux.
 
 ## Requirements
 
 * Swarmpit supporting Docker 1.13 and newer.
+* Docker Swarm Manager (this role deploy swarmpit as docker stack)
 
 ## Role Variables
 
