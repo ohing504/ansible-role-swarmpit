@@ -1,6 +1,8 @@
 ---
 - name: Converge
   hosts: all
+  vars:
+    docker_swarm_network_interface: "{{ ansible_default_ipv4['interface'] }}"
   roles:
     - role: geerlingguy.docker
     - role: thomasjpfan.docker-swarm
