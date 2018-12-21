@@ -1,0 +1,6 @@
+---
+# Docker for Linux.
+- src: geerlingguy.docker
+
+# Configures a Docker Swarm cluster.
+- src: thomasjpfan.docker-swarm
